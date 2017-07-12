@@ -4,6 +4,7 @@ import com.mmall.common.Const;
 import com.mmall.common.ServerResponse;
 import com.mmall.pojo.User;
 import com.mmall.service.IUserService;
+import com.mmall.util.MD5Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,5 +31,15 @@ public class UserController {
             session.setAttribute(Const.CURRENT_USER,response.getData());
         }
         return  response;
+    }
+    @RequestMapping(value = "register.do",method = RequestMethod.POST)
+    @ResponseBody
+    public ServerResponse<String> register(User user){
+        return iUserService.register(user);
+    }
+    @RequestMapping(value = "check_valid.do",method = RequestMethod.POST)
+    @ResponseBody
+    public ServerResponse<String> checkValid(String str ,String type){
+        return iUserService.checkValid(str,type);
     }
 }
