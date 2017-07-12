@@ -11,4 +11,9 @@ import org.springframework.stereotype.Service;
 public interface IUserService {
     ServerResponse<User> login(String username, String password);
 
+    ServerResponse<String> register(User user);
+
+    ServerResponse<String> checkValid(String str,String type);
+
+
 }

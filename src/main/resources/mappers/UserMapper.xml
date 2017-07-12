@@ -153,16 +153,15 @@
   </update>
 
 
-  <select id="checkUsername" resultType="int" parameterType="string" >
-    select count(1) from mmall_user
-    where username = #{username}
-  </select>
+    <select id="checkUsername" resultType="int" parameterType="string">
+      SELECT count(1) FROM  mmall_user
+      WHERE username = #{username}
+    </select>
 
-  <select id="checkEmail" resultType="int" parameterType="string" >
-    select count(1) from mmall_user
-    where email = #{email}
-  </select>
-
+    <select id="checkEmail" resultType="int" parameterType="string">
+        SELECT count(1) FROM  mmall_user
+        WHERE email = #{email}
+    </select>
 
   <select id="selectLogin" resultMap="BaseResultMap" parameterType="map">
     SELECT
