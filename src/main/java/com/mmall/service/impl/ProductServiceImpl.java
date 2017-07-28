@@ -4,7 +4,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.google.common.collect.Lists;
 import com.mmall.common.Const;
-import com.mmall.common.ResponeCode;
+import com.mmall.common.ResponseCode;
 import com.mmall.common.ServerResponse;
 import com.mmall.dao.CategoryMapper;
 import com.mmall.dao.ProductMapper;
@@ -63,7 +63,7 @@ public class ProductServiceImpl implements IProductService {
     @Override
     public ServerResponse<String> setSaleStatus(Integer productId, Integer status) {
         if(productId == null || status == null){
-            return ServerResponse.createByError(ResponeCode.ILLEGAL_ARGUMENT.getCode(),ResponeCode.ILLEGAL_ARGUMENT.getDesc());
+            return ServerResponse.createByError(ResponseCode.ILLEGAL_ARGUMENT.getCode(), ResponseCode.ILLEGAL_ARGUMENT.getDesc());
         }
         Product product = new Product();
         product.setId(productId);
@@ -78,7 +78,7 @@ public class ProductServiceImpl implements IProductService {
     @Override
     public ServerResponse<ProductDetailVo> manageProductDetail(Integer productId) {
         if(productId == null){
-            return ServerResponse.createByError(ResponeCode.ILLEGAL_ARGUMENT.getCode(),ResponeCode.ILLEGAL_ARGUMENT.getDesc());
+            return ServerResponse.createByError(ResponseCode.ILLEGAL_ARGUMENT.getCode(), ResponseCode.ILLEGAL_ARGUMENT.getDesc());
         }
         Product product = productMapper.selectByPrimaryKey(productId);
         if(product == null){
@@ -122,7 +122,7 @@ public class ProductServiceImpl implements IProductService {
 
     public ServerResponse<ProductDetailVo> getProductDetail(Integer productId){
         if(productId == null){
-            return ServerResponse.createByError(ResponeCode.ILLEGAL_ARGUMENT.getCode(),ResponeCode.ILLEGAL_ARGUMENT.getDesc());
+            return ServerResponse.createByError(ResponseCode.ILLEGAL_ARGUMENT.getCode(), ResponseCode.ILLEGAL_ARGUMENT.getDesc());
         }
         Product product = productMapper.selectByPrimaryKey(productId);
         if (product == null){
@@ -151,7 +151,7 @@ public class ProductServiceImpl implements IProductService {
         productDetailVo.setStatus(product.getStatus());
         productDetailVo.setStock(product.getStock());
 
-        productDetailVo.setImageHost(PropertiesUtil.getProperty("ftp.server.http.prefix","http://img.jerio.com/"));
+        productDetailVo.setImageHost(PropertiesUtil.getProperty("ftp.server.http.prefix","http://image.jerio.com/"));
 
         Category category = categoryMapper.selectByPrimaryKey(product.getCategoryId());
         if (category == null){
@@ -165,7 +165,7 @@ public class ProductServiceImpl implements IProductService {
     @Override
     public ServerResponse<PageInfo> getProductByKeywordCategory(String keyword, Integer categoryId, int pageNum, int pageSize, String orderBy) {
         if (StringUtils.isBlank(keyword) && categoryId == null){
-            return  ServerResponse.createByError(ResponeCode.ILLEGAL_ARGUMENT.getCode(),ResponeCode.ILLEGAL_ARGUMENT.getDesc());
+            return  ServerResponse.createByError(ResponseCode.ILLEGAL_ARGUMENT.getCode(), ResponseCode.ILLEGAL_ARGUMENT.getDesc());
         }
         List<Integer> categoryIdList = Lists.newArrayList();
         if (categoryId != null){

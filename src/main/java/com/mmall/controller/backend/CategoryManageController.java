@@ -1,7 +1,7 @@
 package com.mmall.controller.backend;
 
 import com.mmall.common.Const;
-import com.mmall.common.ResponeCode;
+import com.mmall.common.ResponseCode;
 import com.mmall.common.ServerResponse;
 import com.mmall.pojo.User;
 import com.mmall.service.ICategoryService;
@@ -37,7 +37,7 @@ public class CategoryManageController {
     public ServerResponse addCategory(HttpSession session, String categoryName, @RequestParam(value = "parentId",defaultValue = "0") int parentId){
         User user = (User) session.getAttribute(Const.CURRENT_USER);
         if (user == null){
-            return ServerResponse.createByError(ResponeCode.NEED_LOGIN.getCode(),"请先登录");
+            return ServerResponse.createByError(ResponseCode.NEED_LOGIN.getCode(),"请先登录");
         }
         //校验用户权限
         if (iUserService.checkAdminRole(user).isSuccess()){
@@ -50,7 +50,7 @@ public class CategoryManageController {
     public ServerResponse setCategoryName(HttpSession session,String categoryName, Integer categoryId){
         User user = (User) session.getAttribute(Const.CURRENT_USER);
         if (user == null){
-            return ServerResponse.createByError(ResponeCode.NEED_LOGIN.getCode(),"请先登录");
+            return ServerResponse.createByError(ResponseCode.NEED_LOGIN.getCode(),"请先登录");
         }
         //校验用户权限
         if (iUserService.checkAdminRole(user).isSuccess()){
@@ -68,7 +68,7 @@ public class CategoryManageController {
     public ServerResponse getChildrenParallelCategory(HttpSession session,@RequestParam(value = "categoryId",defaultValue = "0" ) Integer categoryId){
         User user = (User) session.getAttribute(Const.CURRENT_USER);
         if (user == null){
-            return ServerResponse.createByError(ResponeCode.NEED_LOGIN.getCode(),"请先登录");
+            return ServerResponse.createByError(ResponseCode.NEED_LOGIN.getCode(),"请先登录");
         }
         //校验用户权限
         if (iUserService.checkAdminRole(user).isSuccess()){
@@ -82,7 +82,7 @@ public class CategoryManageController {
     public ServerResponse getCategoryAndDeepChildrenCategory(HttpSession session,Integer categoryId){
         User user = (User) session.getAttribute(Const.CURRENT_USER);
         if (user == null){
-            return ServerResponse.createByError(ResponeCode.NEED_LOGIN.getCode(),"请先登录");
+            return ServerResponse.createByError(ResponseCode.NEED_LOGIN.getCode(),"请先登录");
         }
         //校验用户权限
         if (iUserService.checkAdminRole(user).isSuccess()){

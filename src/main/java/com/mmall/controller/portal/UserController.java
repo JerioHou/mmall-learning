@@ -1,11 +1,10 @@
 package com.mmall.controller.portal;
 
 import com.mmall.common.Const;
-import com.mmall.common.ResponeCode;
+import com.mmall.common.ResponseCode;
 import com.mmall.common.ServerResponse;
 import com.mmall.pojo.User;
 import com.mmall.service.IUserService;
-import com.mmall.util.MD5Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -108,7 +107,7 @@ public class UserController {
     public ServerResponse<User> get_information(HttpSession session){
         User user = (User)session.getAttribute(Const.CURRENT_USER);
         if (user == null){
-            return ServerResponse.createByError(ResponeCode.NEED_LOGIN.getCode(),"请先登录");
+            return ServerResponse.createByError(ResponseCode.NEED_LOGIN.getCode(),"请先登录");
         }
         return  iUserService.getInformation(user.getId());
     }

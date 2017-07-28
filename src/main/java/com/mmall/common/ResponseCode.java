@@ -3,7 +3,7 @@ package com.mmall.common;
 /**
  * Created by Administrator on 2017/7/10.
  */
-public enum ResponeCode {
+public enum ResponseCode {
     SUCCESS(0,"SUCCESS"),
     ERROR(1,"ERROR"),
     NEED_LOGIN(10,"NEED_LOGIN"),
@@ -21,7 +21,7 @@ public enum ResponeCode {
         return desc;
     }
 
-    ResponeCode(int code,String desc){
+    ResponseCode(int code, String desc){
         this.code = code;
         this.desc = desc;
     }
