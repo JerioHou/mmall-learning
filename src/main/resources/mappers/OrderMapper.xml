@@ -23,7 +23,7 @@
     id, order_no, user_id, shipping_id, payment, payment_type, postage, status, payment_time, 
     send_time, end_time, close_time, create_time, update_time
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
     <include refid="Base_Column_List" />
     from mmall_order
@@ -198,4 +198,16 @@
       update_time = now()
     where id = #{id,jdbcType=INTEGER}
   </update>
+  
+  <select id="selectByOrderNoAndUserId" resultMap="BaseResultMap" parameterType="map">
+  select
+  <include refid="Base_Column_List"/>
+    FROM  mmall_order
+    WHERE user_id = #{userId}
+    and order_no = #{orderNo}
+  </select>
+
+
+
+
 </mapper>

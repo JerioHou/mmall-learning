@@ -32,6 +32,7 @@ public class FTPUtil {
             boolean result = ftpUtil.uploadFile("ftpfile",fileList);
             return result;
         } catch (Exception e) {
+            logger.error("文件上传失败");
             e.printStackTrace();
             return  false;
         }
