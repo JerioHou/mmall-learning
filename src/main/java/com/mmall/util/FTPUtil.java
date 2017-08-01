@@ -58,7 +58,7 @@ public class FTPUtil {
                 upload = false;
                 e.printStackTrace();
             } finally {
-                fis.close();
+                 fis.close();
                 ftpClient.disconnect();
             }
         }
